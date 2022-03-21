@@ -6,7 +6,9 @@ def dither_picture(pic_no, input_filename):
     params = "-channel luminance -auto-level -modulate 120,200 -gravity center -resize 600x448^ "
     params += "-extent 600x448 -background white -dither FloydSteinberg -define dither:diffusion-amount=75% "
     params += "-remap eink-7color.png -depth 4"
-    system_call = "convert '{input_filename}' {params} -type Palette BMP3:{filename}".format(
+    imagemagic_call = "convert" if os.name == 'posix' else "magick"
+    system_call = "{call} '{input_filename}' {params} -type Palette BMP3:{filename}".format(
+        call=imagemagic_call,
         input_filename=input_filename,
         params=params,
         filename=os.path.join("dithered", str(pic_no) + ".bmp"))
