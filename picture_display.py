@@ -17,7 +17,7 @@ def dither_picture(pic_no, input_filename):
                 os.path.join(os.path.curdir, "converted", str(pic_no) + ".bmp"))
 
 
-files = [f for f in os.listdir('original') if f.lower().endswith('jpg')]
+files = [f for f in os.listdir('original') if f.lower().endswith('jpg') and not f.startswith('.')]
 if not os.path.isdir('dithered'):
     os.mkdir('dithered')
 if not os.path.isdir('converted'):
