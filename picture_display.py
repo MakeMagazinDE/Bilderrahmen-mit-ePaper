@@ -1,17 +1,25 @@
 import os
 from convert_bmp import convert_bmp
 
-def dither_picture(n, file):
-    systemcall = f"convert '{file}' -channel luminance -auto-level -modulate 120,200 -gravity center -resize 600x448^ -extent 600x448 -background white -dither FloydSteinberg -define dither:diffusion-amount=75% -remap eink-7color.png -depth 4 -type Palette BMP3:dithered/{n}.bmp"
-    os.system(systemcall)
-    convert_bmp(f"./dithered/{n}.bmp", f"./converted/{n}.bmp")
 
-path = './'
-files = [f for f in os.listdir(path+'original/') if f.lower().endswith('jpg')]
-if not os.path.isdir(path+'dithered/'):
-    os.mkdir(path+'dithered/')
-if not os.path.isdir(path+'converted/'):
-    os.mkdir(path+'converted/')
+def dither_picture(pic_no, input_filename):
+    params = "-channel luminance -auto-level -modulate 120,200 -gravity center -resize 600x448^ "
+    params += "-extent 600x448 -background white -dither FloydSteinberg -define dither:diffusion-amount=75% "
+    params += "-remap eink-7color.png -depth 4"
+    system_call = "convert '{input_filename}' {params} -type Palette BMP3:{filename}".format(
+        input_filename=input_filename,
+        params=params,
+        filename=os.path.join("dithered", str(pic_no) + ".bmp"))
+    os.system(system_call)
+    convert_bmp(os.path.join(os.path.curdir, "dithered", str(pic_no) + ".bmp"),
+                os.path.join(os.path.curdir, "converted", str(pic_no) + ".bmp"))
 
-for n,file in enumerate(files):
-    dither_picture(n, 'original/'+file)
+
+files = [f for f in os.listdir('original') if f.lower().endswith('jpg')]
+if not os.path.isdir('dithered'):
+    os.mkdir('dithered')
+if not os.path.isdir('converted'):
+    os.mkdir('converted')
+
+for n, filename in enumerate(files):
+    dither_picture(n, os.path.join('original', filename))
