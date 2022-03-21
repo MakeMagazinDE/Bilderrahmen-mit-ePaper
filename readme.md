@@ -12,4 +12,4 @@ Ein Farbfotorahmen, der tagsüber jede Stunde das Bild wechselt, Speicherplatz f
 
 ![Picture](https://github.com/MakeMagazinDE/Bilderrahmen-mit-ePaper/blob/main/Bilderrahmen.jpg)
 
-Den vollständigen Artikel mit der Bauanleitung gibt es in der [Make-Ausgabe 1/2022](https://www.heise.de/select/make/2022/2/seite-54) zu lesen. 
+Den vollständigen Artikel mit der Bauanleitung gibt es in der [Make-Ausgabe 2/2022](https://www.heise.de/select/make/2022/2/seite-54) zu lesen. 
