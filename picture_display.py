@@ -7,7 +7,7 @@ def dither_picture(pic_no, input_filename):
     params += "-extent 600x448 -background white -dither FloydSteinberg -define dither:diffusion-amount=75% "
     params += "-remap eink-7color.png -depth 4"
     imagemagic_call = "convert" if os.name == 'posix' else "magick"
-    system_call = "{call} '{input_filename}' {params} -type Palette BMP3:{filename}".format(
+    system_call = "{call} {input_filename} {params} -type Palette BMP3:{filename}".format(
         call=imagemagic_call,
         input_filename=input_filename,
         params=params,
